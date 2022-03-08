@@ -4,8 +4,8 @@ apply plugin: 'maven-publish'
 group = 'com.ThePinkAlliance.core'
 version = '2.0'
 
-sourceCompatibility = 11 // java 11
-targetCompatibility = 11
+sourceCompatibility = 17 // java 11
+targetCompatibility = 17
 
 repositories {
   mavenCentral()
