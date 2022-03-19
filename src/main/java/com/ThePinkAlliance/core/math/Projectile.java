@@ -24,13 +24,13 @@ public class Projectile {
   private double r = 1.225;
 
   /**
-   * calculating
+   * calculates the max distance using angle and velocity
    * @param angle in degrees
    * @param velocity in m/s
    * @return the distance in meters
    */
-  public double calculateRange(double angle, double velocity) {
-    return (Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / g;
+  public static double calculateRange(double angle, double velocity) {
+    return (Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / 9.8;
   }
 
   /**
