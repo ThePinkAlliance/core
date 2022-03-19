@@ -16,7 +16,7 @@ import org.checkerframework.checker.units.qual.A;
 public class Projectile {
 
   /** this is the force of gravity on earth m/s */
-  private double g = 9.8;
+  private double g = Math.pow(9.8, 2);
 
   /**
    * Air Density kg/m3
@@ -30,7 +30,9 @@ public class Projectile {
    * @return the distance in meters
    */
   public static double calculateRange(double angle, double velocity) {
-    return (Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / 9.8;
+    return (
+      (Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / Math.pow(9.8, 2)
+    );
   }
 
   /**
