@@ -69,9 +69,9 @@ public class Projectile {
    * For information on how to calculate area for different shapes
    * https://www.grc.nasa.gov/WWW/K-12/airplane/area.html
    * @param radius
-   * @return the area of the circle
+   * @return the area of the Sphere
    */
-  public double calculateAreaCircle(double radius) {
+  public double calculateAreaSphere(double radius) {
     return 4 * Math.PI * Math.pow(radius, 2.0);
   }
 }
