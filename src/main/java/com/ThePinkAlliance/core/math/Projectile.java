@@ -1,70 +1,47 @@
 package com.ThePinkAlliance.core.math;
 
+import org.checkerframework.checker.units.qual.A;
+
 /**
- * Glenn Research Center NASA
+ * Resources from Glenn Research Center NASA
+ *
+ * https://courses.lumenlearning.com/boundless-physics/chapter/projectile-motion/
+ *
  * https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/flight-equations-with-drag/
+ *
+ * https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/forces-on-a-baseball/
+ *
+ * https://www.desmos.com/calculator/on4xzwtdwz
  */
 public class Projectile {
-
-  private double weight;
-  private double angle;
 
   /** this is the force of gravity on earth m/s */
   private double g = 9.8;
 
   /**
-   * This is the mass of the projectile
-   */
-  private double m;
-
-  /**
-   * Gas Density kg/m3
+   * Air Density kg/m3
    */
   private double r = 1.225;
 
-  private double c;
-
-  private double radius = 1;
-
-  private double area = calculateAreaCircle(radius);
-
-  public Projectile(double diameter, double weight, double angle) {
-    this.weight = weight;
-    this.radius = diameter / 2;
-    this.angle = angle;
-
-    this.m = weight / g;
-    this.c = 2 * Math.PI * r;
-  }
-
-  public double calulateVelocity(double distance) {
-    return 0;
-  }
-
-  public double calulateVelocity(
-    double distance,
-    double velocity,
-    double angle
-  ) {
-    // Drag coefficient
-    double Cd = r * (velocity / 2) * area;
-    double areaCrossSection = this.calculateCrossSection(r, c);
-    double Vt = this.calculateTerminalVelocity(Cd, velocity, areaCrossSection);
-    double drag = .5 * Cd * r * areaCrossSection * Math.pow(Vt, 2);
-
-    this.angle = angle;
-
-    return 0;
+  /**
+   * calculating
+   * @param angle in degrees
+   * @param velocity in m/s
+   * @return the distance in meters
+   */
+  public double calculateRange(double angle, double velocity) {
+    return (Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / g;
   }
 
   /**
    * caluculating terminal velocity
    * https://www.grc.nasa.gov/www/k-12/airplane/termv.html
-   * @param Cd
+   * @param Cd Drag coefficient
    * @param velocity
-   * @param A
+   * @param A is the cross section of the spheres area
    * @return
    */
+  @Deprecated
   public double calculateTerminalVelocity(
     double Cd,
     double velocity,
