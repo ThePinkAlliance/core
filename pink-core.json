@@ -7,7 +7,7 @@
 	"jsonUrl": "https://raw.githubusercontent.com/ThePinkAlliance/core/main/pink-core.json",
 	"javaDependencies": [
 		{
-			"groupId": "com.ThePinkAlliance.core",
+			"groupId": "com.ThePinkAlliance",
 			"artifactId": "core",
 			"version": "2.0"
 		}
