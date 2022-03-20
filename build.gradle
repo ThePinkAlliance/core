@@ -17,6 +17,7 @@ repositories {
 dependencies {
   implementation 'com.google.guava:guava:29.0-jre'
   implementation 'edu.wpi.first.wpilibj:wpilibj-java:2022.4.1'
+  implementation 'edu.wpi.first.shuffleboard:shuffleboard:2022.4.1'
   implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2022.4.1'
   implementation 'edu.wpi.first.wpiutil:wpiutil-java:2022.4.1'
   implementation 'edu.wpi.first.cscore:cscore-java:2022.4.1'
