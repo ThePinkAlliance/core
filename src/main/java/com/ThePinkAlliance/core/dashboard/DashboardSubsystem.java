@@ -1,6 +1,5 @@
 package com.ThePinkAlliance.core.dashboard;
 
-import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
@@ -17,16 +16,24 @@ public class DashboardSubsystem extends SubsystemBase {
   private Thread runningThread;
   private ArrayList<DashboardEntry> entries = new ArrayList<>();
 
-  public DashboardSubsystem(String name, DashboardEntry... entries) {
+  public DashboardSubsystem(String name) {
     this.tab = Shuffleboard.getTab(name);
-    this.entries = new ArrayList<DashboardEntry>(List.of(entries));
     this.infoThread = new InfoThread(tab, this.entries);
     this.runningThread = new Thread(infoThread);
 
+    if (runningThread != null && runningThread.isAlive()) {
+      this.runningThread.interrupt();
+    }
+
+    runningThread.setDaemon(true);
     runningThread.start();
   }
 
   public void createEntry(DashboardEntry entry) {
+    infoThread.add(entry);
+  }
+
+  public void createEntry(DashboardEntry... entry) {
     infoThread.add(entry);
   }
 }
@@ -77,5 +84,9 @@ class InfoThread implements Runnable {
 
   public void add(DashboardEntry entry) {
     this.entries.add(entry);
+  }
+
+  public void add(DashboardEntry... entry) {
+    this.entries.addAll(List.of(entry));
   }
 }
