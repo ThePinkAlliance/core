@@ -39,7 +39,7 @@ public class Projectile {
    * caluculating terminal velocity
    * https://www.grc.nasa.gov/www/k-12/airplane/termv.html
    * @param Cd Drag coefficient
-   * @param velocity
+   * @param velocity the initial velocity of the sphere in m/s
    * @param A is the cross section of the spheres area
    * @return
    */
@@ -68,7 +68,7 @@ public class Projectile {
   /**
    * For information on how to calculate area for different shapes
    * https://www.grc.nasa.gov/WWW/K-12/airplane/area.html
-   * @param radius
+   * @param radius radius of the sphere
    * @return the area of the Sphere
    */
   public double calculateAreaSphere(double radius) {
