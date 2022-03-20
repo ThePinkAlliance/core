@@ -1,11 +1,11 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
 group = 'com.ThePinkAlliance.core'
 version = '2.0.2'
 
-sourceCompatibility = 1.11 // java 11
-targetCompatibility = 1.11
+sourceCompatibility = JavaVersion.VERSION_11 // java 11
+targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
   mavenCentral()
