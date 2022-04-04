@@ -1,6 +1,6 @@
-package com.ThePinkAlliance.pathweaver;
+package com.ThePinkAlliance.core.pathweaver;
 
-import com.ThePinkAlliance.util.Gains;
+import com.ThePinkAlliance.core.util.Gains;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;

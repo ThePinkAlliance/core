@@ -1,4 +1,4 @@
-package com.ThePinkAlliance.shooter;
+package com.ThePinkAlliance.core.shooter;
 
 public interface TargetPackage {
   public double kP = 0;

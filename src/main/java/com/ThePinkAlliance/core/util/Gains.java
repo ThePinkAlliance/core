@@ -1,4 +1,4 @@
-package com.ThePinkAlliance.util;
+package com.ThePinkAlliance.core.util;
 
 public class Gains {
 

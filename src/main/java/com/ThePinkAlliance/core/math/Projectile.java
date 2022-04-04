@@ -1,4 +1,4 @@
-package com.ThePinkAlliance.math;
+package com.ThePinkAlliance.core.math;
 
 import org.checkerframework.checker.units.qual.A;
 
