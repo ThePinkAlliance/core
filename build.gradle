@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
-group = 'com.ThePinkAlliance.core'
+group = 'com.ThePinkAlliance'
 version = '2.0.5'
 
 sourceCompatibility = JavaVersion.VERSION_11 // java 11
@@ -22,6 +22,7 @@ dependencies {
   implementation 'edu.wpi.first.wpiutil:wpiutil-java:2022.4.1'
   implementation 'edu.wpi.first.cscore:cscore-java:2022.4.1'
   implementation 'edu.wpi.first.ntcore:ntcore-java:2022.4.1'
+  implementation 'edu.wpi.first.wpimath:wpimath-java:2022.4.1'
 }
 
 java {
