@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
 group = 'com.ThePinkAlliance'
-version = '2.0.7'
+version = '2.0.8'
 
 sourceCompatibility = JavaVersion.VERSION_11 // java 11
 targetCompatibility = JavaVersion.VERSION_11
