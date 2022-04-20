@@ -2,8 +2,6 @@ package com.ThePinkAlliance.core.rev;
 
 import com.revrobotics.CANSparkMaxLowLevel;
 
-// TODO: make commanding the motor easier
-
 public class RevNeo550 extends SparkMax {
 
   /**

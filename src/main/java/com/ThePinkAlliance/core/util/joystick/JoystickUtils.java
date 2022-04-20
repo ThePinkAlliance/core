@@ -1,4 +1,4 @@
-package com.ThePinkAlliance.core.util;
+package com.ThePinkAlliance.core.util.joystick;
 
 public class JoystickUtils {
 

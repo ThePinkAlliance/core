@@ -103,14 +103,12 @@ public class PathweaverFactory {
     Consumer<SwerveModuleState[]> outputModuleStates,
     Subsystem... requirements
   ) {
-    ErrorMessages.requireNonNullParam(
-      this.m_trajectory,
-      "trajectory",
-      "buildController"
-    );
-
     return new SwerveControllerCommand(
-      m_trajectory,
+      ErrorMessages.requireNonNullParam(
+        this.m_trajectory,
+        "trajectory",
+        "buildController"
+      ),
       m_poseSupplier,
       m_kinematics,
       m_xController,
