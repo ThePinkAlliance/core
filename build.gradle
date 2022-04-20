@@ -9,11 +9,11 @@ targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
   mavenCentral()
-    maven { 
-      url = uri('https://frcmaven.wpi.edu/artifactory/release/')     
-    }
-    maven { url = uri('https://maven.revrobotics.com/') }
-    maven { url = uri('https://devsite.ctr-electronics.com/maven/release/') }
+  maven { 
+    url = uri('https://frcmaven.wpi.edu/artifactory/release/')     
+  }
+  maven { url = uri('https://maven.revrobotics.com/') }
+  maven { url = uri('https://devsite.ctr-electronics.com/maven/release/') }
 }
 
 dependencies {
@@ -27,7 +27,7 @@ dependencies {
   implementation 'edu.wpi.first.ntcore:ntcore-java:2022.4.1'
   implementation 'edu.wpi.first.wpimath:wpimath-java:2022.4.1'
 
-  implementation 'com.revrobotics.frc:REVLib-java:2022.1.0'
+  implementation 'com.revrobotics.frc:REVLib-java:2022.1.1'
 }
 
 java {
