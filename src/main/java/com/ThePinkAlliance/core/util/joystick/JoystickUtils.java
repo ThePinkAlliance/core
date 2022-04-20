@@ -1,6 +1,6 @@
 package com.ThePinkAlliance.core.util.joystick;
 
-public class JoystickUtils {
+public abstract class JoystickUtils {
 
   public static double deadband(double value, double deadband) {
     if (Math.abs(value) > deadband) {
@@ -27,6 +27,13 @@ public class JoystickUtils {
     value = Math.copySign(value * value * value, value);
 
     return value;
+  }
+
+  /**
+   * Returns an inverted input of the joystick.
+   */
+  public double invert(double v) {
+    return v *= -1;
   }
 
   /**

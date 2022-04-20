@@ -19,6 +19,9 @@ public abstract class JoystickMap {
   public static int LEFT_Y_AXIS = 1;
   public static int RIGHT_Y_AXIS = 5;
 
+  public static int LEFT_X_AXIS = 0;
+  public static int RIGHT_X_AXIS = 4;
+
   public static int POV_UP = 0;
   public static int POV_RIGHT = 90;
   public static int POV_DOWN = 180;
