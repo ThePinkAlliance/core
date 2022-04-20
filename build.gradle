@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
 group = 'com.ThePinkAlliance.core'
-version = '2.0.8'
+version = '2.0.9'
 
 sourceCompatibility = JavaVersion.VERSION_11 // java 11
 targetCompatibility = JavaVersion.VERSION_11
@@ -12,10 +12,13 @@ repositories {
     maven { 
       url = uri('https://frcmaven.wpi.edu/artifactory/release/')     
     }
+    maven { url = uri('https://maven.revrobotics.com/') }
+    maven { url = uri('https://devsite.ctr-electronics.com/maven/release/') }
 }
 
 dependencies {
   implementation 'com.google.guava:guava:29.0-jre'
+
   implementation 'edu.wpi.first.wpilibj:wpilibj-java:2022.4.1'
   implementation 'edu.wpi.first.shuffleboard:shuffleboard:2022.4.1'
   implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2022.4.1'
@@ -23,6 +26,8 @@ dependencies {
   implementation 'edu.wpi.first.cscore:cscore-java:2022.4.1'
   implementation 'edu.wpi.first.ntcore:ntcore-java:2022.4.1'
   implementation 'edu.wpi.first.wpimath:wpimath-java:2022.4.1'
+
+  implementation 'com.revrobotics.frc:REVLib-java:2022.1.0'
 }
 
 java {
