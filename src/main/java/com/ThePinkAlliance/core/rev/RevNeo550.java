@@ -3,7 +3,9 @@ package com.ThePinkAlliance.core.rev;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
-public class RevNeo550 extends CANSparkMax {
+// TODO: make commanding the motor easier
+
+public class RevNeo550 extends SparkMax {
 
   /**
    * This will configure a rev neo with amperage limit's by default.
