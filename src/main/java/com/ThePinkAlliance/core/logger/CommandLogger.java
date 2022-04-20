@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * This is not finished don't use it.
+ */
+@Deprecated
 public class CommandLogger {
 
   private String commandName;
