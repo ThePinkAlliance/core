@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class PathweaverFactory {
+public class PathFactory {
 
   private SwerveDriveKinematics m_kinematics;
   private Trajectory m_trajectory;
@@ -27,7 +27,7 @@ public class PathweaverFactory {
   private Gains m_yGains;
   private Gains m_thetaGains;
 
-  public PathweaverFactory(
+  public PathFactory(
     SwerveDriveKinematics m_kinematics,
     Supplier<Pose2d> m_poseSupplier,
     Trajectory m_trajectory,
@@ -62,7 +62,7 @@ public class PathweaverFactory {
       );
   }
 
-  public PathweaverFactory(
+  public PathFactory(
     SwerveDriveKinematics m_kinematics,
     Supplier<Pose2d> m_poseSupplier,
     Gains m_xGains,
@@ -117,5 +117,37 @@ public class PathweaverFactory {
       outputModuleStates,
       requirements
     );
+  }
+
+  public SwerveControllerCommand buildController(
+    Trajectory trajectory,
+    Consumer<SwerveModuleState[]> outputModuleStates,
+    Subsystem... requirements
+  ) {
+    return new SwerveControllerCommand(
+      ErrorMessages.requireNonNullParam(
+        trajectory,
+        "trajectory",
+        "buildController"
+      ),
+      m_poseSupplier,
+      m_kinematics,
+      m_xController,
+      m_yController,
+      m_thetaController,
+      outputModuleStates,
+      requirements
+    );
+  }
+
+  public SwerveControllerCommand buildControllerWithThetaLimit(
+    double min,
+    double max,
+    Consumer<SwerveModuleState[]> outputModuleStates,
+    Subsystem... requirements
+  ) {
+    this.m_thetaController.setIntegratorRange(min, max);
+
+    return buildController(outputModuleStates, requirements);
   }
 }

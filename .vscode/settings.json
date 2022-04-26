@@ -1,4 +1,5 @@
 {
 	"ros.distro": "noetic",
-	"java.configuration.updateBuildConfiguration": "automatic"
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"rpc.enabled": false
 }
