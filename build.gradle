@@ -33,9 +33,14 @@ dependencies {
 }
 
 jar {
-  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-  manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(CORE_MAIN_CLASS)
-  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+  def env = System.getenv("JITPACK")
+
+  if (env == false || env == null) {
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(CORE_MAIN_CLASS)
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+  }
+
 }
 
 publishing {
