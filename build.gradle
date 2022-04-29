@@ -7,6 +7,8 @@ version = '2.0.11'
 sourceCompatibility = JavaVersion.VERSION_11 // java 11
 targetCompatibility = JavaVersion.VERSION_11
 
+def CORE_MAIN_CLASS = "com.ThePinkAlliance.core"
+
 repositories {
   mavenCentral()
   maven { 
@@ -30,9 +32,10 @@ dependencies {
   implementation 'com.revrobotics.frc:REVLib-java:2022.1.1'
 }
 
-java {
-	withSourcesJar()
-	withJavadocJar()
+jar {
+  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+  manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(CORE_MAIN_CLASS)
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 publishing {
