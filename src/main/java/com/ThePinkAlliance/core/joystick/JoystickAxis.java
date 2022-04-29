@@ -8,18 +8,30 @@ public class JoystickAxis {
 
   private Joystick joystick;
   private Axis axis;
+  private double axis_limit;
 
   public JoystickAxis(Joystick joystick, Axis axis) {
     this.joystick = joystick;
     this.axis = axis;
+    this.axis_limit = 1;
+  }
+
+  public JoystickAxis limit(double max) {
+    this.axis_limit = max / 100;
+
+    return this;
   }
 
   public Supplier<Double> invert() {
-    return () -> (this.joystick.getJoystick().getRawAxis(this.axis.id) * -1);
+    return () ->
+      (
+        (this.joystick.getJoystick().getRawAxis(this.axis.id) * -1) * axis_limit
+      );
   }
 
   public Supplier<Double> getSuppliedValue() {
-    return () -> this.joystick.getJoystick().getRawAxis(this.axis.id);
+    return () ->
+      (this.joystick.getJoystick().getRawAxis(this.axis.id) * axis_limit);
   }
 
   public JoystickButton getJoystickButton() {
