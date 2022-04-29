@@ -40,7 +40,6 @@ jar {
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(CORE_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
   }
-
 }
 
 publishing {
