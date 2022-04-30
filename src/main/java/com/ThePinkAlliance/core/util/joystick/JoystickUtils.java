@@ -1,5 +1,7 @@
 package com.ThePinkAlliance.core.util.joystick;
 
+import com.ThePinkAlliance.core.joystick.JoystickAxis;
+
 public abstract class JoystickUtils {
 
   public static double deadband(double value, double deadband) {

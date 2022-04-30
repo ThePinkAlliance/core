@@ -2,6 +2,7 @@ package com.ThePinkAlliance.core.joystick;
 
 import com.ThePinkAlliance.core.joystick.Joystick.Axis;
 import com.ThePinkAlliance.core.joystick.Joystick.Buttons;
+import com.ThePinkAlliance.core.util.joystick.JoystickUtils;
 import java.util.function.Supplier;
 
 public class JoystickAxis {
@@ -9,6 +10,11 @@ public class JoystickAxis {
   private Joystick joystick;
   private Axis axis;
   private double axis_limit;
+
+  private boolean cube = false;
+  private boolean deadband = false;
+
+  private double deadbandSetpoint = 0.05;
 
   public JoystickAxis(Joystick joystick, Axis axis) {
     this.joystick = joystick;
@@ -23,15 +29,48 @@ public class JoystickAxis {
   }
 
   public Supplier<Double> invert() {
-    return () ->
-      (
-        (this.joystick.getJoystick().getRawAxis(this.axis.id) * -1) * axis_limit
-      );
+    double x =
+      (this.joystick.getJoystick().getRawAxis(this.axis.id) * -1) * axis_limit;
+
+    return () -> modAxis(x);
+  }
+
+  public JoystickAxis cubeAxis() {
+    this.cube = true;
+
+    return this;
+  }
+
+  public JoystickAxis deadband() {
+    this.deadband = true;
+
+    return this;
+  }
+
+  public JoystickAxis deadband(double deadband) {
+    this.deadband = true;
+    this.deadbandSetpoint = deadband;
+
+    return this;
   }
 
   public Supplier<Double> getSuppliedValue() {
-    return () ->
-      (this.joystick.getJoystick().getRawAxis(this.axis.id) * axis_limit);
+    double x =
+      this.joystick.getJoystick().getRawAxis(this.axis.id) * axis_limit;
+
+    return () -> modAxis(x);
+  }
+
+  private double modAxis(double x) {
+    if (cube) {
+      x = Math.copySign(x * x * x, x);
+    }
+
+    if (deadband) {
+      x = JoystickUtils.deadband(x, deadbandSetpoint);
+    }
+
+    return x;
   }
 
   public JoystickButton getJoystickButton() {
