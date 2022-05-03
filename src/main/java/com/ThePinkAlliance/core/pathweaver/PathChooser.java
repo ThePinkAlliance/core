@@ -37,6 +37,10 @@ public class PathChooser {
     this.updateChooser(this.selectables);
   }
 
+  public Command get() {
+    return this.chooser.getSelected();
+  }
+
   private void updateChooser(List<CommandSelectable> selectables) {
     for (CommandSelectable selectable : selectables) {
       this.chooser.addOption(selectable.getName(), selectable.getCommand());

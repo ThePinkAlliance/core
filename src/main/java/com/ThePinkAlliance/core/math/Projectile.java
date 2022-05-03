@@ -1,7 +1,5 @@
 package com.ThePinkAlliance.core.math;
 
-import org.checkerframework.checker.units.qual.A;
-
 /**
  * Resources from Glenn Research Center NASA
  *
@@ -16,7 +14,7 @@ import org.checkerframework.checker.units.qual.A;
 public class Projectile {
 
   /** this is the force of gravity on earth m/s */
-  private double g = Math.pow(9.8, 2);
+  // private double g = Math.pow(9.8, 2);
 
   /**
    * Air Density kg/m3

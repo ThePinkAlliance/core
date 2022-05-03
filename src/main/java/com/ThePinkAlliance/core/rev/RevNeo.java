@@ -10,6 +10,6 @@ public class RevNeo extends SparkMax {
    */
   public RevNeo(final int channel) {
     super(channel, CANSparkMaxLowLevel.MotorType.kBrushless);
-    this.setSmartCurrentLimit(50);
+    this.setSmartCurrentLimit(40);
   }
 }
