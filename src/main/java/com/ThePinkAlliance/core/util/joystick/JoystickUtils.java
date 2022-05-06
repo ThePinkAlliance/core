@@ -32,7 +32,7 @@ public abstract class JoystickUtils {
   /**
    * Returns an inverted input of the joystick.
    */
-  public double invert(double v) {
+  public static double invert(double v) {
     return v *= -1;
   }
 
