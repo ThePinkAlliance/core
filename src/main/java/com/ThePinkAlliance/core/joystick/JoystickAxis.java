@@ -22,7 +22,19 @@ public class JoystickAxis {
     this.axis_limit = 1;
   }
 
-  public JoystickAxis limit(double max) {
+  public JoystickAxis clearDeadband() {
+    this.deadband = false;
+
+    return this;
+  }
+
+  public JoystickAxis clearCubing() {
+    this.cube = false;
+
+    return this;
+  }
+
+  public JoystickAxis withLimit(double max) {
     this.axis_limit = max / 100;
 
     return this;
@@ -35,19 +47,19 @@ public class JoystickAxis {
     return () -> modAxis(x);
   }
 
-  public JoystickAxis cubeAxis() {
+  public JoystickAxis withAxisCubed() {
     this.cube = true;
 
     return this;
   }
 
-  public JoystickAxis deadband() {
+  public JoystickAxis withDeadband() {
     this.deadband = true;
 
     return this;
   }
 
-  public JoystickAxis deadband(double deadband) {
+  public JoystickAxis withDeadband(double deadband) {
     this.deadband = true;
     this.deadbandSetpoint = deadband;
 
