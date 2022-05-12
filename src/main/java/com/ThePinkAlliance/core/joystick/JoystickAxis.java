@@ -1,5 +1,6 @@
 package com.ThePinkAlliance.core.joystick;
 
+import com.ThePinkAlliance.core.joystick.InputProcessor;
 import com.ThePinkAlliance.core.joystick.Joystick.Axis;
 import com.ThePinkAlliance.core.joystick.Joystick.Buttons;
 import com.ThePinkAlliance.core.util.joystick.JoystickUtils;
@@ -9,6 +10,9 @@ public class JoystickAxis {
 
   private Joystick joystick;
   private Axis axis;
+
+  private InputProcessor inputProcessor;
+
   private double axis_limit;
 
   private boolean cube = false;
@@ -30,6 +34,12 @@ public class JoystickAxis {
 
   public JoystickAxis clearCubing() {
     this.cube = false;
+
+    return this;
+  }
+
+  public JoystickAxis withCustomProcessor(InputProcessor processor) {
+    this.inputProcessor = processor;
 
     return this;
   }
@@ -74,12 +84,16 @@ public class JoystickAxis {
   }
 
   private double modAxis(double x) {
-    if (cube) {
-      x = Math.copySign(x * x * x, x);
-    }
+    if (inputProcessor == null) {
+      if (cube) {
+        x = Math.copySign(x * x * x, x);
+      }
 
-    if (deadband) {
-      x = JoystickUtils.deadband(x, deadbandSetpoint);
+      if (deadband) {
+        x = JoystickUtils.deadband(x, deadbandSetpoint);
+      }
+    } else {
+      x = inputProcessor.handle(x);
     }
 
     return x;
