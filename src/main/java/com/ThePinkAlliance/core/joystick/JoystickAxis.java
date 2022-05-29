@@ -38,6 +38,7 @@ public class JoystickAxis {
     return this;
   }
 
+  @Deprecated(forRemoval = false)
   public JoystickAxis withCustomProcessor(InputProcessor processor) {
     this.inputProcessor = processor;
 

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public abstract class SelectableBuilder {
 
-  public static CommandSelectable buildCommand(String name, Command command) {
+  public static CommandSelectable build(String name, Command command) {
     return new CommandSelectable() {
       @Override
       public String getName() {
