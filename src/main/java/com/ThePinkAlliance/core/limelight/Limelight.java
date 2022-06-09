@@ -1,5 +1,6 @@
 package com.ThePinkAlliance.core.limelight;
 
+import com.ThePinkAlliance.core.annotations.Untested;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -59,18 +60,9 @@ public class Limelight {
     this.HEIGHT_FROM_FLOOR = height_from_floor;
     this.MOUNTED_ANGLE = mounted_angle;
     this.REFLECTED_TAPE_HEIGHT = GAME_TARGET_HEIGHTS.RAPID_REACT_TOP_HUB.get();
-    this.CURRENT_LED_MODE = LED_MODE.OFF;
     this.HORIZONTAL_OFFSET = 0;
-    this.table = NetworkTableInstance.getDefault().getTable("limelight");
-    this.ty = this.table.getEntry("ty");
-    this.tx = this.table.getEntry("tx");
-    this.ledMode = this.table.getEntry("ledMode");
-    this.tv = this.table.getEntry("tv");
 
-    // Configure the limelight led's, camera mode and pipeline
-    this.ledMode.setNumber(this.CURRENT_LED_MODE.get());
-    this.table.getEntry("camMode").setNumber(0);
-    this.table.getEntry("pipeline").setNumber(0);
+    configureLimelight();
   }
 
   /**
@@ -87,11 +79,25 @@ public class Limelight {
     this.HEIGHT_FROM_FLOOR = height_from_floor;
     this.MOUNTED_ANGLE = mounted_angle;
     this.REFLECTED_TAPE_HEIGHT = GAME_TARGET_HEIGHTS.RAPID_REACT_TOP_HUB.get();
-    this.CURRENT_LED_MODE = LED_MODE.OFF;
     this.HORIZONTAL_OFFSET = horizontal_offset;
+
+    configureLimelight();
+  }
+
+  private void configureLimelight() {
+    this.CURRENT_LED_MODE = LED_MODE.OFF;
+
     this.table = NetworkTableInstance.getDefault().getTable("limelight");
     this.ty = this.table.getEntry("ty");
     this.tx = this.table.getEntry("tx");
+
+    this.ledMode = this.table.getEntry("ledMode");
+    this.tv = this.table.getEntry("tv");
+
+    // Configure the limelight led's, camera mode and pipeline
+    this.ledMode.setNumber(this.CURRENT_LED_MODE.get());
+    this.table.getEntry("camMode").setNumber(0);
+    this.table.getEntry("pipeline").setNumber(0);
   }
 
   /**
@@ -100,6 +106,14 @@ public class Limelight {
    */
   public void configureTargetHeight(double targetHeight) {
     this.REFLECTED_TAPE_HEIGHT = targetHeight;
+  }
+
+  /**
+   *
+   * @param targetHeight The height of the reflective tape in inches.
+   */
+  public void configureTargetHeight(GAME_TARGET_HEIGHTS targetHeight) {
+    this.configureTargetHeight(targetHeight.get());
   }
 
   public double calculateAngleOffset() {
@@ -122,6 +136,7 @@ public class Limelight {
     return tv.getDouble(0);
   }
 
+  @Untested
   public double calculateDistance() {
     double verticalOffset = ty.getDouble(0);
     double targetAngleDeg = MOUNTED_ANGLE + verticalOffset;
@@ -130,10 +145,7 @@ public class Limelight {
         (REFLECTED_TAPE_HEIGHT - HEIGHT_FROM_FLOOR) /
         Math.tan(Math.toRadians(targetAngleDeg))
       );
-    double error = dist;
 
-    double errAccDistance = (dist / error);
-
-    return errAccDistance;
+    return dist;
   }
 }
