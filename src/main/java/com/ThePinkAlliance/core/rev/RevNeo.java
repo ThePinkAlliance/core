@@ -6,10 +6,10 @@ public class RevNeo extends SparkMax {
 
   /**
    * This will configure a rev neo with a safe amperage limit by default.
-   * @param channel
+   * @param id The CAN id of the REV Neo.
    */
-  public RevNeo(final int channel) {
-    super(channel, CANSparkMaxLowLevel.MotorType.kBrushless);
+  public RevNeo(final int id) {
+    super(id, CANSparkMaxLowLevel.MotorType.kBrushless);
     this.setSmartCurrentLimit(40);
   }
 }
