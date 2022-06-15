@@ -1,13 +1,12 @@
 package com.ThePinkAlliance.core.limelight;
 
-import com.ThePinkAlliance.core.annotations.Untested;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight {
 
-  enum LED_MODE {
+  public enum LED_MODE {
     BLINK(2),
     ON(3),
     OFF(1),
@@ -24,7 +23,7 @@ public class Limelight {
     }
   }
 
-  enum GAME_TARGET_HEIGHTS {
+  public enum GAME_TARGET_HEIGHTS {
     RAPID_REACT_TOP_HUB(102.375);
 
     private double height;
@@ -136,16 +135,13 @@ public class Limelight {
     return tv.getDouble(0);
   }
 
-  @Untested
   public double calculateDistance() {
     double verticalOffset = ty.getDouble(0);
     double targetAngleDeg = MOUNTED_ANGLE + verticalOffset;
-    double dist =
-      (
-        (REFLECTED_TAPE_HEIGHT - HEIGHT_FROM_FLOOR) /
-        Math.tan(Math.toRadians(targetAngleDeg))
-      );
 
-    return dist;
+    return (
+      (REFLECTED_TAPE_HEIGHT - HEIGHT_FROM_FLOOR) /
+      Math.tan(Math.toRadians(targetAngleDeg))
+    );
   }
 }
