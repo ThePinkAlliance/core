@@ -12,6 +12,14 @@ public abstract class TrajectoryLoader {
   public static Trajectory loadFromPath(String path) {
     Trajectory trajectory;
 
+    if (!path.contains(".wpilib.json") && !path.contains("output/")) {
+      path = "output/" + path + ".wpilib.json";
+    }
+
+    if (!path.contains(".wpilib.json")) {
+      path = path + ".wpilib.json";
+    }
+
     try {
       Path trajectoryPath = Filesystem
         .getDeployDirectory()
