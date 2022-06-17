@@ -51,7 +51,6 @@ public class Limelight {
   NetworkTableEntry ledMode;
 
   /**
-   *
    * @param height_from_floor The limelight lens height from the floor in inches.
    * @param mounted_angle The current pitch angle of the limelight on its mount.
    */
@@ -65,7 +64,6 @@ public class Limelight {
   }
 
   /**
-   *
    * @param height_from_floor The limelight lens height from the floor in inches.
    * @param mounted_angle The current pitch angle of the limelight on its mount.
    * @param horizontal_offset The angluar offset of the limelight from the center of the robot.
@@ -133,6 +131,13 @@ public class Limelight {
    */
   public double foundTargets() {
     return tv.getDouble(0);
+  }
+
+  /**
+   * Returns the horizontal difference from the center of the detected target.
+   */
+  public double getHorizontalDiff() {
+    return this.tx.getDouble(0);
   }
 
   public double calculateDistance() {
