@@ -33,6 +33,9 @@ dependencies {
   implementation 'edu.wpi.first.ntcore:ntcore-java:2022.4.1'
   implementation 'edu.wpi.first.wpimath:wpimath-java:2022.4.1'
 
+  implementation 'com.ctre.phoenix:api-java:5.19.4'
+  implementation 'com.ctre.phoenix:platform-sim:5.19.4'
+
   implementation 'com.revrobotics.frc:REVLib-java:2022.1.1'
 }
 
