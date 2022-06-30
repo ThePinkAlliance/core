@@ -28,15 +28,14 @@ public class PathFactory {
   private Gains m_thetaGains;
 
   public PathFactory(
-    SwerveDriveKinematics m_kinematics,
-    Supplier<Pose2d> m_poseSupplier,
-    Trajectory m_trajectory,
-    Gains m_xGains,
-    Gains m_yGains,
-    Gains m_thetaGains,
-    double maxVelocityMetersPerSecond,
-    double maxAccelerationMetersPerSecond
-  ) {
+      SwerveDriveKinematics m_kinematics,
+      Supplier<Pose2d> m_poseSupplier,
+      Trajectory m_trajectory,
+      Gains m_xGains,
+      Gains m_yGains,
+      Gains m_thetaGains,
+      double maxVelocityMetersPerSecond,
+      double maxAccelerationMetersPerSecond) {
     this.m_kinematics = m_kinematics;
     this.m_poseSupplier = m_poseSupplier;
     this.m_trajectory = m_trajectory;
@@ -45,32 +44,26 @@ public class PathFactory {
     this.m_yGains = m_yGains;
     this.m_thetaGains = m_thetaGains;
 
-    this.m_xController =
-      new PIDController(this.m_xGains.kP, this.m_xGains.kI, this.m_xGains.kD);
-    this.m_yController =
-      new PIDController(this.m_yGains.kP, this.m_yGains.kI, this.m_yGains.kD);
-    this.m_thetaController =
-      new ProfiledPIDController(
+    this.m_xController = new PIDController(this.m_xGains.kP, this.m_xGains.kI, this.m_xGains.kD);
+    this.m_yController = new PIDController(this.m_yGains.kP, this.m_yGains.kI, this.m_yGains.kD);
+    this.m_thetaController = new ProfiledPIDController(
         this.m_thetaGains.kP,
         this.m_thetaGains.kI,
         this.m_thetaGains.kD,
         new TrapezoidProfile.Constraints(
-          maxVelocityMetersPerSecond,
-          // ? this might need to be squared
-          maxAccelerationMetersPerSecond
-        )
-      );
+            maxVelocityMetersPerSecond,
+            // ? this might need to be squared
+            maxAccelerationMetersPerSecond));
   }
 
   public PathFactory(
-    SwerveDriveKinematics m_kinematics,
-    Supplier<Pose2d> m_poseSupplier,
-    Gains m_xGains,
-    Gains m_yGains,
-    Gains m_thetaGains,
-    double maxVelocityMetersPerSecond,
-    double maxAccelerationMetersPerSecond
-  ) {
+      SwerveDriveKinematics m_kinematics,
+      Supplier<Pose2d> m_poseSupplier,
+      Gains m_xGains,
+      Gains m_yGains,
+      Gains m_thetaGains,
+      double maxVelocityMetersPerSecond,
+      double maxAccelerationMetersPerSecond) {
     this.m_kinematics = m_kinematics;
     this.m_poseSupplier = m_poseSupplier;
 
@@ -78,21 +71,16 @@ public class PathFactory {
     this.m_yGains = m_yGains;
     this.m_thetaGains = m_thetaGains;
 
-    this.m_xController =
-      new PIDController(this.m_xGains.kP, this.m_xGains.kI, this.m_xGains.kD);
-    this.m_yController =
-      new PIDController(this.m_yGains.kP, this.m_yGains.kI, this.m_yGains.kD);
-    this.m_thetaController =
-      new ProfiledPIDController(
+    this.m_xController = new PIDController(this.m_xGains.kP, this.m_xGains.kI, this.m_xGains.kD);
+    this.m_yController = new PIDController(this.m_yGains.kP, this.m_yGains.kI, this.m_yGains.kD);
+    this.m_thetaController = new ProfiledPIDController(
         this.m_thetaGains.kP,
         this.m_thetaGains.kI,
         this.m_thetaGains.kD,
         new TrapezoidProfile.Constraints(
-          maxVelocityMetersPerSecond,
-          // ? this might need to be squared
-          maxAccelerationMetersPerSecond
-        )
-      );
+            maxVelocityMetersPerSecond,
+            // ? this might need to be squared
+            maxAccelerationMetersPerSecond));
   }
 
   public void setTrajectory(Trajectory trajectory) {
@@ -100,52 +88,45 @@ public class PathFactory {
   }
 
   public SwerveControllerCommand buildController(
-    Consumer<SwerveModuleState[]> outputModuleStates,
-    Subsystem... requirements
-  ) {
+      Consumer<SwerveModuleState[]> outputModuleStates,
+      Subsystem... requirements) {
     return new SwerveControllerCommand(
-      ErrorMessages.requireNonNullParam(
-        this.m_trajectory,
-        "trajectory",
-        "buildController"
-      ),
-      m_poseSupplier,
-      m_kinematics,
-      m_xController,
-      m_yController,
-      m_thetaController,
-      outputModuleStates,
-      requirements
-    );
+        ErrorMessages.requireNonNullParam(
+            this.m_trajectory,
+            "trajectory",
+            "buildController"),
+        m_poseSupplier,
+        m_kinematics,
+        m_xController,
+        m_yController,
+        m_thetaController,
+        outputModuleStates,
+        requirements);
   }
 
   public SwerveControllerCommand buildController(
-    Trajectory trajectory,
-    Consumer<SwerveModuleState[]> outputModuleStates,
-    Subsystem... requirements
-  ) {
+      Trajectory trajectory,
+      Consumer<SwerveModuleState[]> outputModuleStates,
+      Subsystem... requirements) {
     return new SwerveControllerCommand(
-      ErrorMessages.requireNonNullParam(
-        trajectory,
-        "trajectory",
-        "buildController"
-      ),
-      m_poseSupplier,
-      m_kinematics,
-      m_xController,
-      m_yController,
-      m_thetaController,
-      outputModuleStates,
-      requirements
-    );
+        ErrorMessages.requireNonNullParam(
+            trajectory,
+            "trajectory",
+            "buildController"),
+        m_poseSupplier,
+        m_kinematics,
+        m_xController,
+        m_yController,
+        m_thetaController,
+        outputModuleStates,
+        requirements);
   }
 
   public SwerveControllerCommand buildControllerWithThetaLimit(
-    double min,
-    double max,
-    Consumer<SwerveModuleState[]> outputModuleStates,
-    Subsystem... requirements
-  ) {
+      double min,
+      double max,
+      Consumer<SwerveModuleState[]> outputModuleStates,
+      Subsystem... requirements) {
     this.m_thetaController.setIntegratorRange(min, max);
 
     return buildController(outputModuleStates, requirements);

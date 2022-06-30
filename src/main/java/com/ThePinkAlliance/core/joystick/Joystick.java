@@ -27,6 +27,19 @@ public class Joystick {
     }
   }
 
+  public enum POV_TYPE {
+    NORTH(0),
+    EAST(90),
+    WEST(270),
+    SOUTH(180);
+
+    int id = 0;
+
+    POV_TYPE(int id) {
+      this.id = id;
+    }
+  }
+
   public enum Axis {
     LEFT_X(JoystickMap.LEFT_X_AXIS),
     LEFT_Y(JoystickMap.LEFT_Y_AXIS),
@@ -54,5 +67,15 @@ public class Joystick {
 
   public JoystickAxis getAxis(Axis axis) {
     return new JoystickAxis(this, axis);
+  }
+
+  public boolean povActivated(POV_TYPE type) {
+    int pov = this.joy.getPOV();
+
+    if (pov == type.id) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
