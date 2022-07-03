@@ -52,7 +52,8 @@ public class Limelight {
 
   /**
    * @param height_from_floor The limelight lens height from the floor in inches.
-   * @param mounted_angle The current pitch angle of the limelight on its mount.
+   * @param mounted_angle     The current pitch angle of the limelight on its
+   *                          mount.
    */
   public Limelight(double height_from_floor, double mounted_angle) {
     this.HEIGHT_FROM_FLOOR = height_from_floor;
@@ -65,18 +66,31 @@ public class Limelight {
 
   /**
    * @param height_from_floor The limelight lens height from the floor in inches.
-   * @param mounted_angle The current pitch angle of the limelight on its mount.
-   * @param horizontal_offset The angluar offset of the limelight from the center of the robot.
+   * @param mounted_angle     The current pitch angle of the limelight on its
+   *                          mount.
+   * @param horizontal_offset The angluar offset of the limelight from the center
+   *                          of the robot.
    */
   public Limelight(
-    double height_from_floor,
-    double mounted_angle,
-    double horizontal_offset
-  ) {
+      double height_from_floor,
+      double mounted_angle,
+      double horizontal_offset) {
     this.HEIGHT_FROM_FLOOR = height_from_floor;
     this.MOUNTED_ANGLE = mounted_angle;
     this.REFLECTED_TAPE_HEIGHT = GAME_TARGET_HEIGHTS.RAPID_REACT_TOP_HUB.get();
     this.HORIZONTAL_OFFSET = horizontal_offset;
+
+    configureLimelight();
+  }
+
+  /**
+   * @param constants Constants for the limelight.
+   */
+  public Limelight(LimelightConstants constants) {
+    this.HEIGHT_FROM_FLOOR = constants.getHeightFromFloor();
+    this.MOUNTED_ANGLE = constants.getMountedAngle();
+    this.REFLECTED_TAPE_HEIGHT = constants.getTargetHeight();
+    this.HORIZONTAL_OFFSET = constants.getHorizontalOffset();
 
     configureLimelight();
   }
@@ -103,6 +117,20 @@ public class Limelight {
    */
   public void configureTargetHeight(double targetHeight) {
     this.REFLECTED_TAPE_HEIGHT = targetHeight;
+  }
+
+  /**
+   * This will reconfigure the limelight with the passed parameters.
+   * 
+   * @param constants LimelightConstants
+   */
+  public void reconfigureLimelight(LimelightConstants constants) {
+    this.HEIGHT_FROM_FLOOR = constants.getHeightFromFloor();
+    this.MOUNTED_ANGLE = constants.getMountedAngle();
+    this.REFLECTED_TAPE_HEIGHT = constants.getTargetHeight();
+    this.HORIZONTAL_OFFSET = constants.getHorizontalOffset();
+
+    configureLimelight();
   }
 
   /**
@@ -144,9 +172,7 @@ public class Limelight {
     double verticalOffset = ty.getDouble(0);
     double targetAngleDeg = MOUNTED_ANGLE + verticalOffset;
 
-    return (
-      (REFLECTED_TAPE_HEIGHT - HEIGHT_FROM_FLOOR) /
-      Math.tan(Math.toRadians(targetAngleDeg))
-    );
+    return ((REFLECTED_TAPE_HEIGHT - HEIGHT_FROM_FLOOR) /
+        Math.tan(Math.toRadians(targetAngleDeg)));
   }
 }
