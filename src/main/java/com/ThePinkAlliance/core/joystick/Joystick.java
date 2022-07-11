@@ -27,7 +27,7 @@ public class Joystick {
     }
   }
 
-  public enum POV_TYPE {
+  public enum PovType {
     NORTH(0),
     EAST(90),
     WEST(270),
@@ -35,7 +35,7 @@ public class Joystick {
 
     int id = 0;
 
-    POV_TYPE(int id) {
+    PovType(int id) {
       this.id = id;
     }
   }
@@ -69,7 +69,7 @@ public class Joystick {
     return new JoystickAxis(this, axis);
   }
 
-  public boolean povActivated(POV_TYPE type) {
+  public boolean povActivated(PovType type) {
     int pov = this.joy.getPOV();
 
     if (pov == type.id) {
