@@ -2,6 +2,9 @@ package com.ThePinkAlliance.core.limelight;
 
 import com.ThePinkAlliance.core.limelight.Limelight.GAME_TARGET_HEIGHTS;
 
+/**
+ * This store's information about the limelight and it's target.
+ */
 public class LimelightConstants {
   private double HEIGHT_FROM_FLOOR;
   private double MOUNTED_ANGLE;

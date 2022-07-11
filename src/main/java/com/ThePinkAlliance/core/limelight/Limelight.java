@@ -163,11 +163,19 @@ public class Limelight {
 
   /**
    * Returns the horizontal difference from the center of the detected target.
+   * 
+   * @return The offset in degress, range of (27 <-> -27)
    */
   public double getHorizontalDiff() {
     return this.tx.getDouble(0);
   }
 
+  /**
+   * In order to get accurate target info you need to run the limelight's onboard
+   * cross-hair calibration.
+   * 
+   * @return The estimated distance in inches.
+   */
   public double calculateDistance() {
     double verticalOffset = ty.getDouble(0);
     double targetAngleDeg = MOUNTED_ANGLE + verticalOffset;
