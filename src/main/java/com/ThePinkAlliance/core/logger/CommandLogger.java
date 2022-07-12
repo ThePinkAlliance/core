@@ -24,10 +24,9 @@ public class CommandLogger {
   public void recordWithTime(String[] rows, Object... objects) {
     String timestamp = new Timestamp(new Date().getTime()).toString();
     File file = new File(
-      directory + commandName + "-" + timestamp + ".command.csv"
-    );
+        directory + commandName + "-" + timestamp + ".command.csv");
     FileWriter writer;
-
+    //
     try {
       writer = new FileWriter(file);
 
