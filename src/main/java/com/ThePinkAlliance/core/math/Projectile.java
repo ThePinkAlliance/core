@@ -23,30 +23,29 @@ public class Projectile {
 
   /**
    * calculates the max distance using angle and velocity
-   * @param angle in degrees
+   * 
+   * @param angle    in degrees
    * @param velocity in m/s
    * @return the distance in meters
    */
   public static double calculateRange(double angle, double velocity) {
-    return (
-      (Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / Math.pow(9.8, 2)
-    );
+    return ((Math.pow(velocity, 2) * Math.pow(Math.sin(angle), 2)) / Math.pow(9.8, 2));
   }
 
   /**
-   * caluculating terminal velocity
+   * calculating terminal velocity
    * https://www.grc.nasa.gov/www/k-12/airplane/termv.html
-   * @param Cd Drag coefficient
+   * 
+   * @param Cd       Drag coefficient
    * @param velocity the initial velocity of the sphere in m/s
-   * @param A is the cross section of the spheres area
+   * @param A        is the cross section of the spheres area
    * @return
    */
   @Deprecated
   public double calculateTerminalVelocity(
-    double Cd,
-    double velocity,
-    double A
-  ) {
+      double Cd,
+      double velocity,
+      double A) {
     double w = Cd * this.r * Math.pow(velocity, 2) * A / 2;
 
     return Math.sqrt((2 * w) / (Cd * r * A));
@@ -55,6 +54,7 @@ public class Projectile {
   /**
    * https://sciencing.com/calculate-height-volume-7884648.html
    * https://www.grc.nasa.gov/WWW/K-12/airplane/drageq.html
+   * 
    * @param r radius
    * @param c circumference
    * @return the area cross section of the sphere
@@ -66,6 +66,7 @@ public class Projectile {
   /**
    * For information on how to calculate area for different shapes
    * https://www.grc.nasa.gov/WWW/K-12/airplane/area.html
+   * 
    * @param radius radius of the sphere
    * @return the area of the Sphere
    */
