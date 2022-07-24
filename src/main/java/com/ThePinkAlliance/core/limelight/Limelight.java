@@ -6,38 +6,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight {
 
-  public enum LED_MODE {
-    BLINK(2),
-    ON(3),
-    OFF(1),
-    PIPELINE(0);
-
-    private int mode;
-
-    LED_MODE(int mode) {
-      this.mode = mode;
-    }
-
-    public int get() {
-      return mode;
-    }
-  }
-
-  public enum GAME_TARGET_HEIGHTS {
-    RAPID_REACT_TOP_HUB(102.375);
-
-    private double height;
-
-    GAME_TARGET_HEIGHTS(double height) {
-      this.height = height;
-    }
-
-    public double get() {
-      return height;
-    }
-  }
-
-  LED_MODE CURRENT_LED_MODE;
+  LedMode CURRENT_LED_MODE;
 
   double HEIGHT_FROM_FLOOR;
   double MOUNTED_ANGLE;
@@ -58,7 +27,7 @@ public class Limelight {
   public Limelight(double height_from_floor, double mounted_angle) {
     this.HEIGHT_FROM_FLOOR = height_from_floor;
     this.MOUNTED_ANGLE = mounted_angle;
-    this.REFLECTED_TAPE_HEIGHT = GAME_TARGET_HEIGHTS.RAPID_REACT_TOP_HUB.get();
+    this.REFLECTED_TAPE_HEIGHT = GameTargetHeights.RAPID_REACT_TOP_HUB.get();
     this.HORIZONTAL_OFFSET = 0;
 
     configureLimelight();
@@ -77,7 +46,7 @@ public class Limelight {
       double horizontal_offset) {
     this.HEIGHT_FROM_FLOOR = height_from_floor;
     this.MOUNTED_ANGLE = mounted_angle;
-    this.REFLECTED_TAPE_HEIGHT = GAME_TARGET_HEIGHTS.RAPID_REACT_TOP_HUB.get();
+    this.REFLECTED_TAPE_HEIGHT = GameTargetHeights.RAPID_REACT_TOP_HUB.get();
     this.HORIZONTAL_OFFSET = horizontal_offset;
 
     configureLimelight();
@@ -96,7 +65,7 @@ public class Limelight {
   }
 
   private void configureLimelight() {
-    this.CURRENT_LED_MODE = LED_MODE.OFF;
+    this.CURRENT_LED_MODE = LedMode.OFF;
 
     this.table = NetworkTableInstance.getDefault().getTable("limelight");
     this.ty = this.table.getEntry("ty");
@@ -137,7 +106,7 @@ public class Limelight {
    *
    * @param targetHeight The height of the reflective tape in inches.
    */
-  public void configureTargetHeight(GAME_TARGET_HEIGHTS targetHeight) {
+  public void configureTargetHeight(GameTargetHeights targetHeight) {
     this.configureTargetHeight(targetHeight.get());
   }
 
