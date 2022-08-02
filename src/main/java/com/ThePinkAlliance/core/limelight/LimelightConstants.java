@@ -1,7 +1,5 @@
 package com.ThePinkAlliance.core.limelight;
 
-import com.ThePinkAlliance.core.limelight.Limelight.GAME_TARGET_HEIGHTS;
-
 /**
  * This store's information about the limelight and it's target.
  */
@@ -53,7 +51,7 @@ public class LimelightConstants {
    * @param TARGET            The reflective tape target we are
    *                          tracking.
    */
-  public LimelightConstants(double HEIGHT_FROM_FLOOR, double MOUNTED_ANGLE, GAME_TARGET_HEIGHTS TARGET) {
+  public LimelightConstants(double HEIGHT_FROM_FLOOR, double MOUNTED_ANGLE, GameTargetHeights TARGET) {
     this.HEIGHT_FROM_FLOOR = HEIGHT_FROM_FLOOR;
     this.MOUNTED_ANGLE = MOUNTED_ANGLE;
     this.HORIZONTAL_OFFSET = 0;
@@ -72,7 +70,8 @@ public class LimelightConstants {
    *                          center
    *                          of the robot.
    */
-  public LimelightConstants(double HEIGHT_FROM_FLOOR, double MOUNTED_ANGLE, GAME_TARGET_HEIGHTS TARGET,
+  public LimelightConstants(double HEIGHT_FROM_FLOOR, double MOUNTED_ANGLE,
+      GameTargetHeights TARGET,
       double HORIZONTAL_OFFSET) {
     this.HEIGHT_FROM_FLOOR = HEIGHT_FROM_FLOOR;
     this.MOUNTED_ANGLE = MOUNTED_ANGLE;

@@ -1,7 +1,5 @@
 package com.ThePinkAlliance.core.joystick;
 
-import com.ThePinkAlliance.core.joystick.Joystick.Axis;
-import com.ThePinkAlliance.core.joystick.Joystick.Buttons;
 import java.util.function.Supplier;
 
 public class JoystickAxis {
@@ -17,12 +15,12 @@ public class JoystickAxis {
   public Supplier<Double> getInvertedSupplier() {
     return () -> (this.joystick.getJoystick().getRawAxis(this.axis.id) * -1);
   }
-  
+
   public double getInverted() {
     return this.joystick.getJoystick().getRawAxis(this.axis.id) * -1;
   }
 
-  public Supplier<Double> getSuppliedValue() { 
+  public Supplier<Double> getSuppliedValue() {
     return () -> this.joystick.getJoystick().getRawAxis(this.axis.id);
   }
 

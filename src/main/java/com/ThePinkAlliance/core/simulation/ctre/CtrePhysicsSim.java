@@ -1,5 +1,6 @@
 package com.ThePinkAlliance.core.simulation.ctre;
 
+import com.ThePinkAlliance.core.simulation.SimProfile;
 import com.ctre.phoenix.motorcontrol.can.*;
 import java.util.*;
 
@@ -152,38 +153,5 @@ public class CtrePhysicsSim {
 
   static double random(double max) {
     return random(0, max);
-  }
-
-  /**
-   * Holds information about a simulated device.
-   */
-  static class SimProfile {
-
-    private long _lastTime;
-    private boolean _running = false;
-
-    /**
-     * Runs the simulation profile.
-     * Implemented by device-specific profiles.
-     */
-    public void run() {
-    }
-
-    /**
-     * Returns the time since last call, in milliseconds.
-     */
-    protected double getPeriod() {
-      // set the start time if not yet running
-      if (!_running) {
-        _lastTime = System.nanoTime();
-        _running = true;
-      }
-
-      long now = System.nanoTime();
-      final double period = (now - _lastTime) / 1000000.;
-      _lastTime = now;
-
-      return period;
-    }
   }
 }

@@ -6,7 +6,7 @@ package com.ThePinkAlliance.core.simulation.ctre;
 
 import static com.ThePinkAlliance.core.simulation.ctre.CtrePhysicsSim.*;
 
-import com.ThePinkAlliance.core.simulation.ctre.CtrePhysicsSim.SimProfile;
+import com.ThePinkAlliance.core.simulation.SimProfile;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class VictorSPXSimProfile extends SimProfile {
