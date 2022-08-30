@@ -19,7 +19,7 @@ public class Projectile {
   /**
    * Air Density kg/m3
    */
-  private double r = 1.225;
+  private static double r = 1.225;
 
   /**
    * calculates the max distance using angle and velocity
@@ -42,11 +42,11 @@ public class Projectile {
    * @return
    */
   @Deprecated
-  public double calculateTerminalVelocity(
+  public static double calculateTerminalVelocity(
       double Cd,
       double velocity,
       double A) {
-    double w = Cd * this.r * Math.pow(velocity, 2) * A / 2;
+    double w = Cd * r * Math.pow(velocity, 2) * A / 2;
 
     return Math.sqrt((2 * w) / (Cd * r * A));
   }
@@ -59,18 +59,7 @@ public class Projectile {
    * @param c circumference
    * @return the area cross section of the sphere
    */
-  public double calculateCrossSection(double r, double c) {
+  public static double calculateCrossSection(double r, double c) {
     return Math.PI * Math.pow(r, 2);
-  }
-
-  /**
-   * For information on how to calculate area for different shapes
-   * https://www.grc.nasa.gov/WWW/K-12/airplane/area.html
-   * 
-   * @param radius radius of the sphere
-   * @return the area of the Sphere
-   */
-  public double calculateAreaSphere(double radius) {
-    return 4 * Math.PI * Math.pow(radius, 2.0);
   }
 }
