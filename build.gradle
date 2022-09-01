@@ -1,4 +1,6 @@
+
 apply plugin: 'java-library'
+apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 group = 'com.ThePinkAlliance.core'
@@ -22,8 +24,12 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.google.guava:guava:29.0-jre'
+  // testImplementation(platform('org.junit:junit-bom:5.9.0'))
+	// testImplementation('org.junit.jupiter:junit-jupiter')
 
+  testImplementation 'junit:junit:4.12'
+
+  implementation 'com.google.guava:guava:29.0-jre'
   implementation 'edu.wpi.first.wpilibj:wpilibj-java:2022.4.1'
   implementation 'edu.wpi.first.shuffleboard:shuffleboard:2022.4.1'
   implementation 'edu.wpi.first.shuffleboard:api:2022.4.1'
@@ -38,7 +44,6 @@ dependencies {
   implementation 'com.revrobotics.frc:REVLib-java:2022.1.1'
 }
 
-
 jar {
   def env = System.getenv("JITPACK")
 
@@ -47,6 +52,13 @@ jar {
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(CORE_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
   }
+}
+
+test {
+  useJUnit()
+  testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
 
 publishing {
