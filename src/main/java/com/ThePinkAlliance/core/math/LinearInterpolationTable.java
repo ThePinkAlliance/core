@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.drive.Vector2d;
 
 /**
  * The linear interpolation takes a table with two columns and will find two
- * values in the first column one that's smaller then the input and one that's
- * greater then the input and will find there corrisponding values in the second
+ * values in the first column, one that's smaller then the input and one
+ * that's
+ * greater then the input, then it will find there corresponding values in the
+ * second
  * column and interpolate between those two based off of the original input.
  * 
  * Learn more about linear interpolation.
