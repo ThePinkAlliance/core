@@ -2,7 +2,7 @@ package com.ThePinkAlliance.core.shooter;
 
 public class TargetPackageHelper {
 
-  public TargetPackage calculatePackageFromDistance(TargetPackageConstraints constraints, double distance) {
+  public static TargetPackage calculatePackageFromDistance(TargetPackageConstraints constraints, double distance) {
     /**
      * SLF: linear formula based on testing with limelight and shooting from various
      * positions
@@ -26,7 +26,7 @@ public class TargetPackageHelper {
     return create(Kf, Kp, rpm, hoodPosition);
   }
 
-  public TargetPackage create(
+  public static TargetPackage create(
       double ff,
       double kP,
       double rpm,
