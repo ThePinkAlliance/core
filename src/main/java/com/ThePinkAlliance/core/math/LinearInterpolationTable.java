@@ -1,0 +1,98 @@
+package com.ThePinkAlliance.core.math;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Stream;
+
+import edu.wpi.first.wpilibj.drive.Vector2d;
+
+/**
+ * The linear interpolation takes a table with two columns and will find two
+ * values in the first column one that's smaller then the input and one that's
+ * greater then the input and will find there corrisponding values in the second
+ * column and interpolate between those two based off of the original input.
+ * 
+ * Learn more about linear interpolation.
+ * <br>
+ * </br>
+ * <a href="https://en.wikipedia.org/wiki/Linear_interpolation">Guide from
+ * wikipedia.</a>
+ * <br>
+ * </br>
+ * <a href=
+ * "https://matthew-brett.github.io/teaching/linear_interpolation.html">Guide
+ * from matthew brett.</a>
+ */
+public class LinearInterpolationTable {
+  ArrayList<Vector2d> points;
+  double lastResult;
+
+  public LinearInterpolationTable(List<Vector2d> points) {
+    ArrayList<Vector2d> mutList = new ArrayList<>(points);
+
+    mutList.sort((a, b) -> b.x > a.x ? 1 : 0);
+
+    this.points = mutList;
+  }
+
+  /**
+   * Converts a Vector2d stream into a Vector2d list.
+   */
+  public List<Vector2d> streamListVector(Stream<Vector2d> stream) {
+    Iterator<Vector2d> iterator = stream.iterator();
+    ArrayList<Vector2d> list = new ArrayList<>();
+
+    iterator.forEachRemaining((e) -> list.add(e));
+
+    return list;
+  }
+
+  /**
+   * This will interpolate the value for the y column using input e.
+   * 
+   * @param e The value to interpolate between
+   */
+  public double interp(double e) {
+    /*
+     * NOTE:
+     * Now after filtering the points list we will have two lists with vectors that
+     * are bigger and smaller then our input, now normally after this we would sort
+     * each list from greatest to smallest and retrieve the greatest vector of both
+     * the newly sorted lists however whether we need to do this depends on our
+     * table makeup. For example if we have a table with all positive values then we
+     * don't need to worry about sorting however if we have a table with negative
+     * values then sorting might become necessary.
+     */
+    ArrayList<Vector2d> greaterPoints = new ArrayList<>(
+        streamListVector(
+            points.stream().filter(v -> Math.abs(v.x) > Math.abs(e) && Math.signum(e) == Math.signum(v.x))));
+    ArrayList<Vector2d> smallerPoints = new ArrayList<>(
+        streamListVector(
+            points.stream().filter(v -> Math.abs(v.x) < Math.abs(e) && Math.signum(e) == Math.signum(v.x))));
+
+    if (greaterPoints.isEmpty() || smallerPoints.isEmpty()) {
+      return Double.NaN;
+    }
+
+    Vector2d vec1 = smallerPoints.get(0);
+    Vector2d vec2 = greaterPoints.get(0);
+
+    /*
+     * If vector two is undefined and vector one is defined then that means the
+     * input is bigger then whats in our table, so to make sure the output won't
+     * become zero in this situation we will assign the second vector to the biggest
+     * vector in our table.
+     */
+    if (vec2 == null && vec1 != null) {
+      vec2 = points.get(points.size() - 1);
+    }
+
+    if (vec1 == null || vec2 == null) {
+      return 0;
+    }
+
+    //
+    return vec1.y + (e - vec1.x) * ((vec2.y - vec1.y) / (vec2.x - vec1.x));
+  }
+}
