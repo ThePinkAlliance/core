@@ -17,12 +17,12 @@ import edu.wpi.first.wpilibj.drive.Vector2d;
  * <br>
  * </br>
  * <a href="https://en.wikipedia.org/wiki/Linear_interpolation">Guide from
- * wikipedia.</a>
+ * wikipedia</a>
  * <br>
  * </br>
  * <a href=
  * "https://matthew-brett.github.io/teaching/linear_interpolation.html">Guide
- * from matthew brett.</a>
+ * from matthew brett</a>
  */
 public class LinearInterpolationTable {
   ArrayList<Vector2d> points;
@@ -92,7 +92,6 @@ public class LinearInterpolationTable {
       return 0;
     }
 
-    //
     return vec1.y + (e - vec1.x) * ((vec2.y - vec1.y) / (vec2.x - vec1.x));
   }
 }
