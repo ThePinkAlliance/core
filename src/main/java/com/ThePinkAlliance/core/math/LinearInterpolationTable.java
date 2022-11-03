@@ -33,7 +33,7 @@ public class LinearInterpolationTable {
   public LinearInterpolationTable(List<Vector2d> points) {
     ArrayList<Vector2d> mutList = new ArrayList<>(points);
 
-    mutList.sort((a, b) -> b.x > a.x ? 1 : 0);
+    mutList.sort((a, b) -> b.x > a.x ? 1 : -1);
 
     this.points = mutList;
   }
