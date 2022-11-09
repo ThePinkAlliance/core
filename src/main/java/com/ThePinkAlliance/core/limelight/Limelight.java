@@ -208,4 +208,28 @@ public class Limelight {
   public void setPipeline(int pipeline) {
     this.pipeline.setNumber(pipeline);
   }
+
+  /**
+   * 
+   * gets the pipeline thats in use by the limelight.
+   */
+  public int getSelectedPipeline() {
+    return this.pipeline.getNumber(this.CURRENT_PIPELINE).intValue();
+  }
+
+  /**
+   * 
+   * gets the led mode thats in use by the limelight.
+   */
+  public int getSelectedLedMode() {
+    return this.ledMode.getNumber(this.CURRENT_LED_MODE.get()).intValue();
+  }
+
+  /**
+   * 
+   * gets the camera mode thats in use by the limelight.
+   */
+  public int getSelectedCamMode() {
+    return this.camMode.getNumber(this.CURRENT_CAM_MODE).intValue();
+  }
 }
