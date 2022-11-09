@@ -1,7 +1,7 @@
 package com.ThePinkAlliance.core.limelight;
 
 /**
- * This store's information about the limelight and it's target.
+ * This stores information about the limelight and its target.
  */
 public class LimelightConstants {
   private double HEIGHT_FROM_FLOOR;
