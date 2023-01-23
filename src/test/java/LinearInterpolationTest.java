@@ -2,8 +2,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import edu.wpi.first.wpilibj.drive.Vector2d;
 import com.ThePinkAlliance.core.math.LinearInterpolationTable;
+import com.ThePinkAlliance.core.math.Vector2d;
 import org.junit.Test;
 
 public class LinearInterpolationTest {
