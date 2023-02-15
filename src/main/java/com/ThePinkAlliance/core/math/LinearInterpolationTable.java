@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
-import edu.wpi.first.wpilibj.drive.Vector2d;
-
 /**
  * The linear interpolation takes a table with two columns and will find two
  * values in the first column, one that's smaller then the input and one

@@ -10,18 +10,4 @@ public class JoystickButton
   public JoystickButton(Joystick joystick, Buttons button) {
     super(joystick.getJoystick(), button.id);
   }
-
-  /**
-   * Returns boolean if the operator is currently pressing the button.
-   */
-  public boolean isPressed() {
-    return this.get();
-  }
-
-  /**
-   * Returns boolean if the operator has released the button or not.
-   */
-  public boolean isReleased() {
-    return !this.get();
-  }
 }
