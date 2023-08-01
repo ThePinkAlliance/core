@@ -11,6 +11,7 @@ package com.ThePinkAlliance.core.math;
  *
  * https://www.desmos.com/calculator/on4xzwtdwz
  */
+@Deprecated
 public class Projectile {
 
   /** this is the force of gravity on earth m/s */
