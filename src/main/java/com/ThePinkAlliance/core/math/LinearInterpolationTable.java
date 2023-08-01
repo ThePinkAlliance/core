@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
+import edu.wpi.first.math.Pair;
+
 /**
  * The linear interpolation takes a table with two columns and will find two
  * values in the first column, one that's smaller then the input and one
@@ -23,15 +25,18 @@ import java.util.stream.Stream;
  * <a href=
  * "https://matthew-brett.github.io/teaching/linear_interpolation.html">Guide
  * from matthew brett</a>
+ * 
+ * @note The search algorithm in this utility is not optimized, average call
+ *       time 8ms.
  */
 public class LinearInterpolationTable {
-  ArrayList<Vector2d> points;
+  ArrayList<Pair<Integer, Integer>> points;
   double lastResult;
 
-  public LinearInterpolationTable(List<Vector2d> points) {
-    ArrayList<Vector2d> mutList = new ArrayList<>(points);
+  public LinearInterpolationTable(List<Pair<Integer, Integer>> points) {
+    ArrayList<Pair<Integer, Integer>> mutList = new ArrayList<>(points);
 
-    mutList.sort((a, b) -> b.x > a.x ? 1 : -1);
+    mutList.sort((a, b) -> b.getFirst() > a.getFirst() ? 1 : -1);
 
     this.points = mutList;
   }
@@ -39,9 +44,9 @@ public class LinearInterpolationTable {
   /**
    * Converts a Vector2d stream into a Vector2d list.
    */
-  public List<Vector2d> streamListVector(Stream<Vector2d> stream) {
-    Iterator<Vector2d> iterator = stream.iterator();
-    ArrayList<Vector2d> list = new ArrayList<>();
+  public List<Pair<Integer, Integer>> streamListVector(Stream<Pair<Integer, Integer>> stream) {
+    Iterator<Pair<Integer, Integer>> iterator = stream.iterator();
+    ArrayList<Pair<Integer, Integer>> list = new ArrayList<>();
 
     iterator.forEachRemaining((e) -> list.add(e));
 
@@ -64,19 +69,21 @@ public class LinearInterpolationTable {
      * don't need to worry about sorting however if we have a table with negative
      * values then sorting might become necessary.
      */
-    ArrayList<Vector2d> greaterPoints = new ArrayList<>(
+    ArrayList<Pair<Integer, Integer>> greaterPoints = new ArrayList<>(
         streamListVector(
-            points.stream().filter(v -> Math.abs(v.x) > Math.abs(e) && Math.signum(e) == Math.signum(v.x))));
-    ArrayList<Vector2d> smallerPoints = new ArrayList<>(
+            points.stream()
+                .filter(v -> Math.abs(v.getFirst()) > Math.abs(e) && Math.signum(e) == Math.signum(v.getFirst()))));
+    ArrayList<Pair<Integer, Integer>> smallerPoints = new ArrayList<>(
         streamListVector(
-            points.stream().filter(v -> Math.abs(v.x) < Math.abs(e) && Math.signum(e) == Math.signum(v.x))));
+            points.stream()
+                .filter(v -> Math.abs(v.getFirst()) < Math.abs(e) && Math.signum(e) == Math.signum(v.getFirst()))));
 
     if (greaterPoints.isEmpty() || smallerPoints.isEmpty()) {
       return Double.NaN;
     }
 
-    Vector2d vec1 = smallerPoints.get(0);
-    Vector2d vec2 = greaterPoints.get(0);
+    Pair<Integer, Integer> vec1 = smallerPoints.get(0);
+    Pair<Integer, Integer> vec2 = greaterPoints.get(0);
 
     /*
      * If vector two is undefined and vector one is defined then that means the
@@ -92,6 +99,7 @@ public class LinearInterpolationTable {
       return 0;
     }
 
-    return vec1.y + (e - vec1.x) * ((vec2.y - vec1.y) / (vec2.x - vec1.x));
+    return vec1.getSecond()
+        + (e - vec1.getFirst()) * ((vec2.getSecond() - vec1.getSecond()) / (vec2.getFirst() - vec1.getFirst()));
   }
 }

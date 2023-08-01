@@ -3,20 +3,20 @@ package com.ThePinkAlliance.core.math;
 import edu.wpi.first.math.geometry.Translation3d;
 
 public class SphericalCoordinates {
-  private final double phi;
-  private final double theta;
-  private final double r;
+  private final double elevation;
+  private final double azimuth;
+  private final double radial_distance;
 
-  public SphericalCoordinates(double r, double theta, double phi) {
-    this.phi = phi;
-    this.r = r;
-    this.theta = theta;
+  public SphericalCoordinates(double distance, double azimuth, double elevation) {
+    this.elevation = elevation;
+    this.radial_distance = distance;
+    this.azimuth = azimuth;
   }
 
   public SphericalCoordinates() {
-    this.phi = 0;
-    this.r = 0;
-    this.theta = 0;
+    this.elevation = 0;
+    this.radial_distance = 0;
+    this.azimuth = 0;
   }
 
   /**
@@ -42,19 +42,30 @@ public class SphericalCoordinates {
    * @param coordinates
    */
   public static Translation3d toCartesian(SphericalCoordinates coordinates) {
-    double x = coordinates.r * Math.sin(coordinates.phi) * Math.cos(coordinates.theta);
-    double y = coordinates.r * Math.sin(coordinates.phi) * Math.sin(coordinates.theta);
-    double z = coordinates.r * Math.cos(coordinates.phi);
+    double x = coordinates.radial_distance * Math.sin(coordinates.elevation) * Math.cos(coordinates.azimuth);
+    double y = coordinates.radial_distance * Math.sin(coordinates.elevation) * Math.sin(coordinates.azimuth);
+    double z = coordinates.radial_distance * Math.cos(coordinates.elevation);
 
     return new Translation3d(x, y, z);
   }
 
+  /**
+   * Subtracts the current coordinate by the passed coordinate.
+   */
   public SphericalCoordinates subtract(SphericalCoordinates coordinates) {
-    double r = this.r - coordinates.r;
-    double theta = this.theta - coordinates.theta;
-    double phi = this.phi - coordinates.phi;
+    double r = this.radial_distance - coordinates.radial_distance;
+    double theta = this.azimuth - coordinates.azimuth;
+    double phi = this.elevation - coordinates.elevation;
 
     return new SphericalCoordinates(r, theta, phi);
+  }
+
+  /**
+   * Calculates the azimuth by subtracting the passed coordinate by the current
+   * azimuth and returns the difference.
+   */
+  public double calculateAzimuth(SphericalCoordinates coordinates) {
+    return coordinates.azimuth - this.azimuth;
   }
 
   /**
@@ -65,16 +76,15 @@ public class SphericalCoordinates {
     return SphericalCoordinates.toCartesian(this);
   }
 
-  public double getTheta() {
-    return theta;
+  public double getAzimuth() {
+    return azimuth;
   }
 
-  public double getPhi() {
-    return phi;
+  public double getElevation() {
+    return elevation;
   }
 
-  public double getR() {
-    return r;
+  public double getRadial_distance() {
+    return radial_distance;
   }
-
 }

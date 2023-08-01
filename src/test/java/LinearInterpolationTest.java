@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ThePinkAlliance.core.math.LinearInterpolationTable;
 import com.ThePinkAlliance.core.math.Vector2d;
+import edu.wpi.first.math.Pair;
 import org.junit.Test;
 
 public class LinearInterpolationTest {
@@ -11,26 +12,26 @@ public class LinearInterpolationTest {
    * NOTE: If the signs of the vectors in the list are opposites then the
    * interpolated result will be skewed.
    */
-  List<Vector2d> points = List.of(
-      new Vector2d(120, 125),
-      new Vector2d(110, 115),
-      new Vector2d(100, 105),
-      new Vector2d(130, 135),
-      new Vector2d(140, 145),
-      new Vector2d(150, 155));
-  List<Vector2d> negativePoints = List.of(
-      new Vector2d(-40, -145),
-      new Vector2d(-30, -135),
-      new Vector2d(-20,
+  List<Pair<Integer, Integer>> points = List.of(
+      new Pair<Integer, Integer>(120, 125),
+      new Pair<Integer, Integer>(110, 115),
+      new Pair<Integer, Integer>(100, 105),
+      new Pair<Integer, Integer>(130, 135),
+      new Pair<Integer, Integer>(140, 145),
+      new Pair<Integer, Integer>(150, 155));
+  List<Pair<Integer, Integer>> negativePoints = List.of(
+      new Pair<Integer, Integer>(-40, -145),
+      new Pair<Integer, Integer>(-30, -135),
+      new Pair<Integer, Integer>(-20,
           -125),
-      new Vector2d(-10, -115),
-      new Vector2d(0, 105),
-      new Vector2d(30, 135),
-      new Vector2d(40, 145),
-      new Vector2d(50, 155));
-  List<Vector2d> emptyPoints = List.of(
-      new Vector2d(0, 0),
-      new Vector2d(0, 0));
+      new Pair<Integer, Integer>(-10, -115),
+      new Pair<Integer, Integer>(0, 105),
+      new Pair<Integer, Integer>(30, 135),
+      new Pair<Integer, Integer>(40, 145),
+      new Pair<Integer, Integer>(50, 155));
+  List<Pair<Integer, Integer>> emptyPoints = List.of(
+      new Pair<Integer, Integer>(0, 0),
+      new Pair<Integer, Integer>(0, 0));
 
   LinearInterpolationTable table = new LinearInterpolationTable(points);
   LinearInterpolationTable emptyTable = new LinearInterpolationTable(emptyPoints);
