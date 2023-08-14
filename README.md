@@ -36,15 +36,15 @@ The linear interpolation class takes a list of integer pairs and will interpolat
 
 The spherical coordinates class makes using the spherical coordinate system easier with some builtin utilites. Just as a quick refresher instead of using x, y, and z for units spherical coordinates use projection (r), azimuth (θ), and elevation (Φ). If your not familar with spherical coordinates theres a great article [here](https://mathinsight.org/spherical_coordinates) to help you out.
 
-### Using Spherical Coordinates
+### Example
 
 ```java
   // Creating coordinates with known constants.
-  double projection = 0;
-  double azimuth = 0;
-  double elevation = 0;
+  double x= 0;
+  double y = 0;
+  double z = 0;
 
-  SphericalCoordinates sphericalCoordinates = SphericalCoordinates.fromCartesian(projection, azimuth, elevation);
+  SphericalCoordinates sphericalCoordinates = SphericalCoordinates.fromCartesian(x, y, z);
 
   // Convert cartesian coordinates to spherical coordinates.
   Translation3d translation3d = new Translation3d(-2, -1, -7);
