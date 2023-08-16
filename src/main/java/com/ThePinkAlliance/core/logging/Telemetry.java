@@ -2,6 +2,7 @@ package com.ThePinkAlliance.core.logging;
 
 import java.util.HashMap;
 
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
@@ -15,7 +16,7 @@ public class Telemetry {
   public Telemetry() {
   }
 
-  public static void logData(String title, String data, Class<?> parent) {
+  public static void logData(String title, Object data, Class<?> parent) {
     Class<?> superClass = parent.getSuperclass();
     String className = parent.getSimpleName();
     String superClassName = superClass != null ? superClass.getSimpleName() : "Unknown";
@@ -31,51 +32,13 @@ public class Telemetry {
       currentWidget = layout.add(title, data);
     }
 
-    currentWidget.getEntry().setString(data);
-
-    layouts.put(id, layout);
-    widgets.put(title, currentWidget);
-  }
-
-  public static void logData(String title, double data, Class<?> parent) {
-    Class<?> superClass = parent.getSuperclass();
-    String className = parent.getSimpleName();
-    String superClassName = superClass != null ? superClass.getSimpleName() : "Unknown";
-    int id = (className + superClassName).hashCode();
-    ShuffleboardLayout layout = layouts.get(id);
-    SimpleWidget currentWidget = widgets.get(title);
-
-    if (layout == null) {
-      layout = tab.getLayout(className + " :: " + superClassName, "List");
+    if (data.getClass() == Integer.class) {
+      currentWidget.getEntry().setInteger((long) data);
+    } else if (data.getClass() == String.class) {
+      currentWidget.getEntry().setString((String) data);
+    } else if (data.getClass() == Double.class) {
+      currentWidget.getEntry().setDouble((double) data);
     }
-
-    if (currentWidget == null) {
-      currentWidget = layout.add(title, data);
-    }
-
-    currentWidget.getEntry().setDouble(data);
-
-    layouts.put(id, layout);
-    widgets.put(title, currentWidget);
-  }
-
-  public static void logData(String title, boolean data, Class<?> parent) {
-    Class<?> superClass = parent.getSuperclass();
-    String className = parent.getSimpleName();
-    String superClassName = superClass != null ? superClass.getSimpleName() : "Unknown";
-    int id = (className + superClassName).hashCode();
-    ShuffleboardLayout layout = layouts.get(id);
-    SimpleWidget currentWidget = widgets.get(title);
-
-    if (layout == null) {
-      layout = tab.getLayout(className + " :: " + superClassName, "List");
-    }
-
-    if (currentWidget == null) {
-      currentWidget = layout.add(title, data);
-    }
-
-    currentWidget.getEntry().setBoolean(data);
 
     layouts.put(id, layout);
     widgets.put(title, currentWidget);
