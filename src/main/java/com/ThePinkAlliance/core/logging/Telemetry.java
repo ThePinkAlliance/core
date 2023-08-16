@@ -38,6 +38,8 @@ public class Telemetry {
       currentWidget.getEntry().setString((String) data);
     } else if (data.getClass() == Double.class) {
       currentWidget.getEntry().setDouble((double) data);
+    } else {
+      currentWidget.getEntry().setString((String) data);
     }
 
     layouts.put(id, layout);
