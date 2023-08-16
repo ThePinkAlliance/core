@@ -32,11 +32,11 @@ public class Telemetry {
       currentWidget = layout.add(title, data);
     }
 
-    if (data.getClass() == Integer.class) {
+    if (data instanceof Integer) {
       currentWidget.getEntry().setInteger((long) data);
-    } else if (data.getClass() == String.class) {
+    } else if (data instanceof String) {
       currentWidget.getEntry().setString((String) data);
-    } else if (data.getClass() == Double.class) {
+    } else if (data instanceof Double) {
       currentWidget.getEntry().setDouble((double) data);
     } else {
       currentWidget.getEntry().setString((String) data);
