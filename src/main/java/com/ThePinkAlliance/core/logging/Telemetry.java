@@ -2,7 +2,6 @@ package com.ThePinkAlliance.core.logging;
 
 import java.util.HashMap;
 
-import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
@@ -29,7 +28,7 @@ public class Telemetry {
     }
 
     if (currentWidget == null) {
-      currentWidget = layout.add(title, data);
+      currentWidget = layout.add(title, serializeDataType(data));
     }
 
     if (data instanceof Integer) {
@@ -39,10 +38,21 @@ public class Telemetry {
     } else if (data instanceof Double) {
       currentWidget.getEntry().setDouble((double) data);
     } else {
-      currentWidget.getEntry().setString((String) data);
+      currentWidget.getEntry().setString(data.toString());
     }
 
     layouts.put(id, layout);
     widgets.put(title, currentWidget);
+  }
+
+  private static Object serializeDataType(Object data) {
+    boolean validType = data instanceof Integer || data instanceof String || data instanceof Double
+        || data instanceof Long;
+
+    if (!validType) {
+      return data.toString();
+    } else {
+      return data;
+    }
   }
 }

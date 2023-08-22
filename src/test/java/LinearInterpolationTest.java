@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import com.ThePinkAlliance.core.logging.Telemetry;
 import com.ThePinkAlliance.core.math.LinearInterpolationTable;
 import edu.wpi.first.math.Pair;
 import org.junit.Test;
