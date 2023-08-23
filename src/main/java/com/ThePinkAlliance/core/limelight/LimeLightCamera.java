@@ -61,15 +61,7 @@ public class LimeLightCamera implements CameraInterface {
             // This check is not reliable, but we use it anyways.
             boolean hasTargets = camera.getEntry("tv").getDouble(0) == 1;
             if (hasTargets) {
-                switch (camTargets.pipelineType) {
-                    case APRIL_TAG:
-                        getAprilTagTargets(camera, camTargets);
-
-                    case REFLECTIVE_HIGH:
-                        getReflectiveTarget(camera, camTargets, PipelineType.REFLECTIVE_HIGH);
-                    case REFLECTIVE_LOW:
-                        getReflectiveTarget(camera, camTargets, PipelineType.REFLECTIVE_LOW);
-                }
+                getAprilTagTargets(camera, camTargets);
             }
         }
         toDashboard(camTargets);

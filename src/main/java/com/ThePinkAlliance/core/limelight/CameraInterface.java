@@ -12,8 +12,6 @@ public interface CameraInterface {
 
     public enum PipelineType {
         APRIL_TAG,
-        REFLECTIVE_HIGH,
-        REFLECTIVE_LOW
     }
 
     /**
@@ -60,61 +58,5 @@ public interface CameraInterface {
             SmartDashboard.putNumber("Cam Target X Angle", data.getTargets().get(0).targetXAngle);
             SmartDashboard.putNumber("Cam Target Y Angle", data.getTargets().get(0).targetYAngle);
         }
-    }
-
-    /**
-     * Converts a pipeline type an index number. Override if the camera is not set
-     * like this.
-     * 
-     * @param type the pipeline type
-     * @return the pipeline index
-     */
-    default int getPipelineIndex(PipelineType type) {
-        int pipelineIndex = 0;
-        switch (type) {
-            case REFLECTIVE_HIGH:
-                pipelineIndex = PIPELINE_REFLECTIVE_HIGH;
-                break;
-
-            case REFLECTIVE_LOW:
-                pipelineIndex = PIPELINE_REFLECTIVE_LOW;
-                break;
-
-            case APRIL_TAG:
-                pipelineIndex = PIPELINE_APRILTAG;
-                break;
-
-            default:
-                throw new IllegalStateException("Unknown pipeline type" + type);
-        }
-        return pipelineIndex;
-
-    }
-
-    /**
-     * Retrieves the pipeline type from the camera. Override if the camera is not
-     * set like this.
-     * 
-     * @return the pipeline type.
-     */
-    default PipelineType getPipelineType(int pipelineIndex) {
-        PipelineType pipelineType;
-        switch (pipelineIndex) {
-            case 0:
-                pipelineType = PipelineType.APRIL_TAG;
-                break;
-
-            case 1:
-                pipelineType = PipelineType.REFLECTIVE_HIGH;
-                break;
-
-            case 2:
-                pipelineType = PipelineType.REFLECTIVE_LOW;
-                break;
-
-            default:
-                throw new IllegalStateException("Unknown PhotonVision pipeline #" + pipelineIndex);
-        }
-        return pipelineType;
     }
 }

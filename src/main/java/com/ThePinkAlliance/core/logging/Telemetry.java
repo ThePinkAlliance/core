@@ -15,6 +15,16 @@ public class Telemetry {
   public Telemetry() {
   }
 
+  /**
+   * Logs data to the debug tab on Shuffleboard stored in a list with the name of
+   * the parent class.
+   * 
+   * @param title  Name of the data being logged.
+   * @param data   The data object being logged. Permitted types: Strings,
+   *               Doubles,
+   *               Integers, and Longs.
+   * @param parent The parent class object.
+   */
   public static void logData(String title, Object data, Class<?> parent) {
     Class<?> superClass = parent.getSuperclass();
     String className = parent.getSimpleName();
@@ -45,6 +55,11 @@ public class Telemetry {
     widgets.put(title, currentWidget);
   }
 
+  /**
+   * Serialize the data type. And convert it into string if it's not a permitted
+   * data
+   * type (String, Long, Integer, Double).
+   */
   private static Object serializeDataType(Object data) {
     boolean validType = data instanceof Integer || data instanceof String || data instanceof Double
         || data instanceof Long;

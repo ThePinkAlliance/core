@@ -49,11 +49,10 @@ public class CameraInterfaceSim implements CameraInterface {
                         SmartDashboard.getNumber(CAM_DISTANCE_KEY, 1.0));
             }
         } else {
-            retVal.pipelineType = PipelineType.REFLECTIVE_HIGH;
             if (hasTarget) {
                 retVal.addReflectiveTarget((int) SmartDashboard.getNumber(CAM_ID_KEY, 1),
                         SmartDashboard.getNumber(CAM_XANGLE_KEY, 0),
-                        SmartDashboard.getNumber(CAM_YANGLE_KEY, 0), PipelineType.REFLECTIVE_HIGH);
+                        SmartDashboard.getNumber(CAM_YANGLE_KEY, 0), PipelineType.APRIL_TAG);
             }
         }
 
