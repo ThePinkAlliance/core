@@ -51,7 +51,10 @@ public class Telemetry {
       currentWidget.getEntry().setString(data.toString());
     }
 
-    layouts.put(id, layout);
+    if (layout == null) {
+      layouts.put(id, layout);
+    }
+
     widgets.put(title, currentWidget);
   }
 
