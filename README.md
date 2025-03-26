@@ -1,4 +1,4 @@
-# core
+# core (DISCONTINUED)
 
 This library contains tools for the limelight, simulation, and math.
 
